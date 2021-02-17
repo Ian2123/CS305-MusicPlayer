@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     w.setWindowTitle("Music Player");
-    w.setMinimumSize(800, 400);
+    w.setMinimumSize(700, 400);
     w.setWindowIcon(QIcon(":/resources/img/mainWindowIcon.png"));
     w.show();
     return a.exec();
