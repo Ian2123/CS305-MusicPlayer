@@ -14,54 +14,77 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QFormLayout" name="formLayout_2">
+   <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <layout class="QFormLayout" name="formLayout">
+     <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
-       <widget class="QPushButton" name="playButton">
+       <widget class="QPushButton" name="pushButton">
         <property name="text">
-         <string>Play</string>
+         <string>Add Track</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="pauseButton">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_2">
         <property name="text">
-         <string>Pause</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QPushButton" name="shuffleButton">
-        <property name="text">
-         <string>Shuffle</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QPushButton" name="infoButton">
-        <property name="text">
-         <string>Information</string>
+         <string>Remove Track</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item row="1" column="0" colspan="2">
+    <item row="0" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="shuffleButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Shuffle</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="playButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Play</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pauseButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Pause</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0" colspan="4">
      <widget class="QListWidget" name="tracklistWidget"/>
     </item>
-    <item row="0" column="1">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="infoButton">
+      <property name="text">
+       <string>Information</string>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
+     </widget>
     </item>
    </layout>
   </widget>
