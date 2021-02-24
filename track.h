@@ -1,6 +1,6 @@
 #ifndef TRACK_H
 #define TRACK_H
-
+#include <QSound>
 
 class track
 {
