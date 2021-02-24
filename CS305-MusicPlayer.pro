@@ -1,6 +1,6 @@
 QT       += core gui multimedia multimediawidgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia multimediawidgets
 
 CONFIG += c++11
 
@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     infowindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    track.cpp
 
 HEADERS += \
     infowindow.h \
-    mainwindow.h
+    mainwindow.h \
+    track.h
 
 FORMS += \
     infowindow.ui \
