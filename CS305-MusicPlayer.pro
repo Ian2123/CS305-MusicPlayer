@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     infowindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    track.cpp
 
 HEADERS += \
     infowindow.h \
-    mainwindow.h
+    mainwindow.h \
+    track.h
 
 FORMS += \
     infowindow.ui \
