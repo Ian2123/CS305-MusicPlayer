@@ -1,6 +1,6 @@
 #include "track.h"
 
-track::track()
+Track::Track()
 {
 
 }

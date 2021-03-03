@@ -1,11 +1,11 @@
 #ifndef TRACK_H
 #define TRACK_H
-#include <QSound>
 
-class track
+
+class Track
 {
 public:
-    track();
+    Track();
 };
 
 #endif // TRACK_H
