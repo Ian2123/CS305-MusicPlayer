@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/resources">
         <file>img/mainWindowIcon.png</file>
+        <file>songs/Africa.mp3</file>
     </qresource>
 </RCC>
