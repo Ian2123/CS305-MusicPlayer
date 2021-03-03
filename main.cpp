@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include <QSound> //it's not angry when I put this library in, cool
 #include <QApplication>
 
 int main(int argc, char *argv[])
