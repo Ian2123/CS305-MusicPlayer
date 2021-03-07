@@ -2,6 +2,7 @@
 #define TRACK_H
 #include <QMediaPlayer> //will be used to do basic media fuctions, pause/play/duration
 #include <QString>
+#include <iostream>
 using namespace std;
 
 class Track

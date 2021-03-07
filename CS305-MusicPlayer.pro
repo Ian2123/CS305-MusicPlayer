@@ -19,11 +19,13 @@ SOURCES += \
     infowindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    playlist.cpp \
     track.cpp
 
 HEADERS += \
     infowindow.h \
     mainwindow.h \
+    playlist.h \
     track.h
 
 FORMS += \
