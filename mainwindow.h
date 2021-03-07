@@ -19,6 +19,16 @@ public:
 private slots:
     void on_infoButton_clicked();
 
+    void on_playButton_clicked();
+
+    void on_pauseButton_clicked();
+
+    void on_shuffleButton_clicked();
+
+    void on_addButton_clicked();
+
+    void on_remButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     InfoWindow *mainIW; //allows access to the main info window (mainIW) on heap, independent of main window.
