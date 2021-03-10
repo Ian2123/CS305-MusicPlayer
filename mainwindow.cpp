@@ -1,6 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "track.h"
+#include <QMessageBox>
+#include <QFile>
+#include <QFileDialog>
+#include <QStandardPaths>
+#include <QDir>
+#include <QFileInfo>
+#include <QStringList>
+
+//Global Variables
+QString SONGSPATH = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -49,11 +59,38 @@ void MainWindow::on_shuffleButton_clicked()
 // Add Button Function
 void MainWindow::on_addButton_clicked()
 {
-    //Add song to playlist data structure and resource file, update list widget
+    QDir songDir;
+
+    // Check if Songs directory exists, if not create it
+    if(!songDir.exists(SONGSPATH))
+        songDir.mkpath(SONGSPATH);
+
+    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.mp3)"));
+    for(int i = 0; i < inFilenames.size(); i++){
+        QFile inFile(inFilenames.at(i));
+        QFileInfo inInfo(inFile);
+        inFile.copy(SONGSPATH + "/" + inInfo.fileName());
+    }
+
+    //Add to playlist linked list
 }
 
 // Remove Button Function
 void MainWindow::on_remButton_clicked()
 {
-    //Remove selected (from list widget) song from playlist data structure and resource file, update list widget
+    QDir songDir;
+
+    // Check if Songs directory exists, if it doesn't exit
+    if(!songDir.exists(SONGSPATH)){
+        QMessageBox::critical(this, "Remove Tracks", "Songs folder not found, add a track first");
+        return;
+    }
+
+    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGSPATH, tr("Track (*.mp3)"));
+    for(int i = 0; i < outFilenames.size(); i++){
+        QFile outFile(outFilenames.at(i));
+        outFile.remove();
+    }
+
+    //Remove from playlist linked list
 }
