@@ -3,12 +3,17 @@
 #include "track.h"
 
 
+
 class Playlist
 {
 public:
     QString pName;
     int pLength;
-    Track * pSongs;
+    struct Node{
+        Track track;
+        struct Node * next;
+        struct Node * prev;
+    };
 
     Playlist();
     void addSong();// adds song to playlist
