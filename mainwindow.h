@@ -29,6 +29,8 @@ private slots:
 
     void on_remButton_clicked();
 
+    void updateListWidget();
+
 private:
     Ui::MainWindow *ui;
     InfoWindow *mainIW; //allows access to the main info window (mainIW) on heap, independent of main window.

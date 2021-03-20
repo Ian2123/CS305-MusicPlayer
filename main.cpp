@@ -12,7 +12,6 @@
    Note: QMediaPlayer does have functions to keep a lot of that info, but it does all the functions that we plan to have automatically
         Therefore, we will try to make our own playlist (Can potentially use linked list to traverse playlist and store songs in "songs" resource file, should discuss tho)
 */
-
 #include "mainwindow.h"
 #include "track.h"
 #include <QApplication>

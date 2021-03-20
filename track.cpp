@@ -1,4 +1,6 @@
 #include "track.h"
+#include <QString>
+#include <QStandardPaths>
 
 Track::Track()
 {
@@ -58,8 +60,17 @@ void Track::play()
     song->play();
 }
 
-void Track::getSong()
+void Track::getSong(QString songName)
 {
-    fName = "qrc:/resources/songs/Africa.mp3";
-    song->setMedia(QUrl(fName));
+    fName = songName;
+    QString songsPath = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
+    song->setMedia(QUrl(songsPath + "/" + fName));
+}
+
+void Track::pause(){
+    song->pause();
+}
+
+QString Track::getSongName(){
+    return fName;
 }

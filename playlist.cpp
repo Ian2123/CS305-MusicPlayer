@@ -1,5 +1,5 @@
 #include "playlist.h"
-
+/*
 Playlist::Playlist()
 {
     pName = "Main";
@@ -27,3 +27,4 @@ void Playlist::addSong(QString fName)
 
 }
 
+*/
