@@ -29,7 +29,7 @@ private slots:
 
     void on_remButton_clicked();
 
-    void updateListWidget();
+    void updateListWidget(bool);
 
 private:
     Ui::MainWindow *ui;

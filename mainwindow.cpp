@@ -14,6 +14,7 @@
 QString SONGS_PATH = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
 Track CURRENT_SONG;
 QListWidgetItem * CURRENT_ITEM = nullptr;
+bool IS_PLAYING = false;
 
 //Set up main window ui and fill list widget with songs currently in Songs folder
 MainWindow::MainWindow(QWidget *parent)
@@ -21,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    updateListWidget();
+    updateListWidget(true);
 }
 
 MainWindow::~MainWindow()
@@ -45,29 +46,34 @@ void MainWindow::on_infoButton_clicked()
 void MainWindow::on_playButton_clicked()
 {
     QListWidgetItem * newItem = ui->tracklistWidget->currentItem();
+    if (newItem == nullptr) return;
     QString songName = newItem->text();
+
+    if(CURRENT_ITEM != nullptr)
+        CURRENT_ITEM->setBackground(QBrush(Qt::white, Qt::SolidPattern));
 
     //If new song is selected play that new song
     if(songName.compare(CURRENT_SONG.getSongName()) != 0){
         CURRENT_SONG.getSong(songName);
         CURRENT_SONG.play();
-        if(CURRENT_ITEM != nullptr)
-            CURRENT_ITEM->setBackground(QBrush(Qt::white, Qt::SolidPattern));
         newItem->setBackground(QBrush(Qt::green, Qt::SolidPattern));
-        CURRENT_ITEM = newItem;
     }
     else{
         //Resume currently playing song
-        CURRENT_ITEM->setBackground(QBrush(Qt::green, Qt::SolidPattern));
+        newItem->setBackground(QBrush(Qt::green, Qt::SolidPattern));
         CURRENT_SONG.play();
     }
+    CURRENT_ITEM = newItem;
+    IS_PLAYING = true;
 }
 
 // Pause Button Function
 void MainWindow::on_pauseButton_clicked()
 {
+    if(CURRENT_ITEM == nullptr) return;
     CURRENT_ITEM->setBackground(QBrush(Qt::yellow, Qt::SolidPattern));
     CURRENT_SONG.pause();
+    IS_PLAYING = false;
 }
 
 // Shuffle Button Function
@@ -91,7 +97,7 @@ void MainWindow::on_addButton_clicked()
         QFileInfo inInfo(inFile);
         inFile.copy(SONGS_PATH + "/" + inInfo.fileName());
     }
-    updateListWidget();
+    updateListWidget(false);
 }
 
 // Remove Button Function
@@ -108,17 +114,32 @@ void MainWindow::on_remButton_clicked()
     QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.mp3)"));
     for(int i = 0; i < outFilenames.size(); i++){
         QFile outFile(outFilenames.at(i));
+        QFileInfo outInfo(outFile);
+        if(CURRENT_SONG.getSongName().compare(outInfo.fileName()) == 0){
+            QMessageBox::critical(this, "Remove Tracks", "Song " + CURRENT_SONG.getSongName() + " is currently playing.");
+            continue;
+        }
         outFile.remove();
     }
-    updateListWidget();
+    updateListWidget(false);
 }
 
 //Used to update track list widget to show tracks currently in Songs folder
-void MainWindow::updateListWidget(){
+void MainWindow::updateListWidget(bool startup){
     QDir songsFolder(SONGS_PATH);
     QStringList tracksCurrentlyInFolder = songsFolder.entryList(QStringList(), QDir::Files);
+
     ui->tracklistWidget->clear();
     foreach(QString filename, tracksCurrentlyInFolder){
         ui->tracklistWidget->addItem(filename);
+    }
+
+    if(!startup){
+        QList<QListWidgetItem *> playItem = ui->tracklistWidget->findItems(CURRENT_SONG.getSongName(), 0);
+        CURRENT_ITEM = playItem[0];
+        if(IS_PLAYING)
+            CURRENT_ITEM->setBackground(QBrush(Qt::green, Qt::SolidPattern));
+        else
+            CURRENT_ITEM->setBackground(QBrush(Qt::yellow, Qt::SolidPattern));
     }
 }
