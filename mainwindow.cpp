@@ -54,7 +54,7 @@ void MainWindow::on_playButton_clicked()
 
     //If new song is selected play that new song
     if(songName.compare(CURRENT_SONG.getSongName()) != 0){
-        CURRENT_SONG.getSong(songName);
+        CURRENT_SONG.setSong(songName);
         CURRENT_SONG.play();
         newItem->setBackground(QBrush(Qt::green, Qt::SolidPattern));
     }
@@ -91,7 +91,9 @@ void MainWindow::on_addButton_clicked()
     if(!songDir.exists(SONGS_PATH))
         songDir.mkpath(SONGS_PATH);
 
-    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.mp3)"));
+    //Retrieve files, copy to songs dir, add to list.
+    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.mp3 *.m4a)"));
+    if(inFilenames.size() == 0) return; //If no files selected
     for(int i = 0; i < inFilenames.size(); i++){
         QFile inFile(inFilenames.at(i));
         QFileInfo inInfo(inFile);
@@ -111,10 +113,14 @@ void MainWindow::on_remButton_clicked()
         return;
     }
 
-    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.mp3)"));
+    //Retrieve files and remove
+    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.mp3 *.m4a)"));
+    if(outFilenames.size() == 0) return; //if no files selected
     for(int i = 0; i < outFilenames.size(); i++){
         QFile outFile(outFilenames.at(i));
         QFileInfo outInfo(outFile);
+
+        //If song is currently playing don't remove
         if(CURRENT_SONG.getSongName().compare(outInfo.fileName()) == 0){
             QMessageBox::critical(this, "Remove Tracks", "Song " + CURRENT_SONG.getSongName() + " is currently playing.");
             continue;

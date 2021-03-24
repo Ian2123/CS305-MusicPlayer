@@ -16,7 +16,7 @@ public:
     void play(); //plays song
     void pause();
     QString getSongName();
-    void getSong(QString); //gets song from user input path -> or from file selection if we can figure that out
+    void setSong(QString); //gets song from user input path -> or from file selection if we can figure that out
 };
 
 #endif // TRACK_H

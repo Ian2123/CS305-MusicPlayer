@@ -60,7 +60,7 @@ void Track::play()
     song->play();
 }
 
-void Track::getSong(QString songName)
+void Track::setSong(QString songName)
 {
     fName = songName;
     QString songsPath = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
