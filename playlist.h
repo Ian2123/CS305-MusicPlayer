@@ -2,8 +2,6 @@
 #define PLAYLIST_H
 #include "track.h"
 
-
-
 class Playlist
 {
 public:

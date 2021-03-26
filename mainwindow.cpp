@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     updateListWidget(true);
+    CURRENT_SONG.setSong("");
 }
 
 MainWindow::~MainWindow()
@@ -140,7 +141,7 @@ void MainWindow::updateListWidget(bool startup){
         ui->tracklistWidget->addItem(filename);
     }
 
-    if(!startup){
+    if(!startup && CURRENT_SONG.getSongName().compare("") != 0){
         QList<QListWidgetItem *> playItem = ui->tracklistWidget->findItems(CURRENT_SONG.getSongName(), 0);
         CURRENT_ITEM = playItem[0];
         if(IS_PLAYING)
