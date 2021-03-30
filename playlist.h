@@ -4,8 +4,6 @@
 #include <QMediaPlaylist>
 #include <QStandardPaths>
 
-
-
 class Playlist
 {
 public:
