@@ -8,9 +8,11 @@ using namespace std;
 class Track
 {
 private:
-    QString fName, tArtist, tAlbum, tTitle;
+    QString tArtist, tAlbum, tTitle;
     QMediaPlayer * song = new QMediaPlayer;
 public:
+    QString fName;
+
     Track();
     void editTrack(); //edits track information: Title, Artist, Album
     void play(); //plays song

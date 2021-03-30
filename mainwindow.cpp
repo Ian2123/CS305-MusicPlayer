@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "track.h"
+#include "playlist.h"
 #include <QMessageBox>
 #include <QFile>
 #include <QFileDialog>
@@ -13,6 +13,7 @@
 //Global Variables
 QString SONGS_PATH = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
 Track CURRENT_SONG;
+Playlist MAIN_PLAYLIST;
 QListWidgetItem * CURRENT_ITEM = nullptr;
 bool IS_PLAYING = false;
 
@@ -55,8 +56,8 @@ void MainWindow::on_playButton_clicked()
     //If new song is selected play that new song
     if(songName.compare(CURRENT_SONG.getSongName()) != 0){
         CURRENT_SONG.setSong(songName);
-        CURRENT_SONG.play();
         newItem->setBackground(QBrush(Qt::green, Qt::SolidPattern));
+        CURRENT_SONG.play();
     }
     else{
         //Resume currently playing song
