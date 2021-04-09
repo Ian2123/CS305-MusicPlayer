@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/resources">
         <file>img/mainWindowIcon.png</file>
+        <file>img/remove.png</file>
+        <file>img/openFile.png</file>
+        <file>img/add.png</file>
+        <file>img/info.png</file>
     </qresource>
 </RCC>

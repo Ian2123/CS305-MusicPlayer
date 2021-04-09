@@ -15,39 +15,11 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QPushButton" name="addButton">
-        <property name="text">
-         <string>Add Tracks</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="remButton">
-        <property name="text">
-         <string>Remove Tracks</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <item row="1" column="0" colspan="4">
+     <widget class="QListWidget" name="tracklistWidget"/>
     </item>
-    <item row="0" column="1">
+    <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="shuffleButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Shuffle</string>
-        </property>
-       </widget>
-      </item>
       <item>
        <widget class="QPushButton" name="playButton">
         <property name="sizePolicy">
@@ -74,17 +46,20 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="shuffleButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Shuffle</string>
+        </property>
+       </widget>
+      </item>
      </layout>
-    </item>
-    <item row="1" column="0" colspan="4">
-     <widget class="QListWidget" name="tracklistWidget"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="infoButton">
-      <property name="text">
-       <string>Information</string>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>
@@ -97,9 +72,63 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuTrack">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionAdd"/>
+    <addaction name="actionRemove"/>
+    <addaction name="actionOpen_Folder"/>
+    <addaction name="actionInfo"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuTrack"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdd">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/resources/img/add.png</normaloff>:/resources/img/add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Track</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/resources/img/remove.png</normaloff>:/resources/img/remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove Track</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionOpen_Folder">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/resources/img/openFile.png</normaloff>:/resources/img/openFile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Folder</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/resources/img/info.png</normaloff>:/resources/img/info.png</iconset>
+   </property>
+   <property name="text">
+    <string>Info</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

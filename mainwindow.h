@@ -17,7 +17,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_infoButton_clicked();
 
     void on_playButton_clicked();
 
@@ -25,11 +24,17 @@ private slots:
 
     void on_shuffleButton_clicked();
 
-    void on_addButton_clicked();
-
-    void on_remButton_clicked();
-
     void updateListWidget(bool);
+
+    void on_actionAdd_triggered();
+
+    void on_actionRemove_triggered();
+
+    void on_actionOpen_Folder_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_actionInfo_triggered();
 
 private:
     Ui::MainWindow *ui;

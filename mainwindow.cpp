@@ -9,6 +9,7 @@
 #include <QFileInfo>
 #include <QStringList>
 #include <QBrush>
+#include <QDesktopServices>
 
 //Global Variables
 QString SONGS_PATH = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
@@ -32,8 +33,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// Info Button Function
-void MainWindow::on_infoButton_clicked()
+// Info tool bar action
+void MainWindow::on_actionInfo_triggered()
 {
     //Modal-less approach, place info window on heap to access simultaneously with main window.
     mainIW = new InfoWindow(0);
@@ -84,8 +85,8 @@ void MainWindow::on_shuffleButton_clicked()
 
 }
 
-// Add Button Function
-void MainWindow::on_addButton_clicked()
+// Add Track toolbar action
+void MainWindow::on_actionAdd_triggered()
 {
     QDir songDir;
 
@@ -104,8 +105,8 @@ void MainWindow::on_addButton_clicked()
     updateListWidget(false);
 }
 
-// Remove Button Function
-void MainWindow::on_remButton_clicked()
+// Remove Track toolbar action
+void MainWindow::on_actionRemove_triggered()
 {
     QDir songDir;
 
@@ -132,7 +133,20 @@ void MainWindow::on_remButton_clicked()
     updateListWidget(false);
 }
 
-//Used to update track list widget to show tracks currently in Songs folder
+// Open Folder toolbar action
+void MainWindow::on_actionOpen_Folder_triggered()
+{
+    QDesktopServices::openUrl(SONGS_PATH);
+}
+
+// Exit toolbar action
+void MainWindow::on_actionExit_triggered()
+{
+    if(IS_PLAYING) CURRENT_SONG.pause();
+    QApplication::quit();
+}
+
+// Used to update track list widget to show tracks currently in Songs folder
 void MainWindow::updateListWidget(bool startup){
     QDir songsFolder(SONGS_PATH);
     QStringList tracksCurrentlyInFolder = songsFolder.entryList(QStringList(), QDir::Files);
