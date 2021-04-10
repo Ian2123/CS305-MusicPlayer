@@ -33,18 +33,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// Info tool bar action
-void MainWindow::on_actionInfo_triggered()
-{
-    //Modal-less approach, place info window on heap to access simultaneously with main window.
-    mainIW = new InfoWindow(0);
-    mainIW->setWindowTitle("Music Player Information");
-    mainIW->setWindowIcon(QIcon(":/resources/img/mainWindowIcon.png"));
-    mainIW->setWindowFlags(Qt::Window);
-    mainIW->setFixedSize(700,400);
-    mainIW->show();
-}
-
 // Play Button Function
 void MainWindow::on_playButton_clicked()
 {
@@ -79,6 +67,15 @@ void MainWindow::on_pauseButton_clicked()
     IS_PLAYING = false;
 }
 
+//Double click play/pause functionality
+void MainWindow::on_tracklistWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    if(item == CURRENT_ITEM)
+        on_pauseButton_clicked();
+    else
+        on_playButton_clicked();
+}
+
 // Shuffle Button Function
 void MainWindow::on_shuffleButton_clicked()
 {
@@ -95,7 +92,7 @@ void MainWindow::on_actionAdd_triggered()
         songDir.mkpath(SONGS_PATH);
 
     //Retrieve files, copy to songs dir, add to list.
-    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.mp3 *.m4a)"));
+    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.wav *.mp3 *.m4a)"));
     if(inFilenames.size() == 0) return; //If no files selected
     for(int i = 0; i < inFilenames.size(); i++){
         QFile inFile(inFilenames.at(i));
@@ -117,7 +114,7 @@ void MainWindow::on_actionRemove_triggered()
     }
 
     //Retrieve files and remove
-    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.mp3 *.m4a)"));
+    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.wav *.mp3 *.m4a)"));
     if(outFilenames.size() == 0) return; //if no files selected
     for(int i = 0; i < outFilenames.size(); i++){
         QFile outFile(outFilenames.at(i));
@@ -137,6 +134,18 @@ void MainWindow::on_actionRemove_triggered()
 void MainWindow::on_actionOpen_Folder_triggered()
 {
     QDesktopServices::openUrl(SONGS_PATH);
+}
+
+// Info tool bar action
+void MainWindow::on_actionInfo_triggered()
+{
+    //Modal-less approach, place info window on heap to access simultaneously with main window.
+    mainIW = new InfoWindow(0);
+    mainIW->setWindowTitle("Music Player Information");
+    mainIW->setWindowIcon(QIcon(":/resources/img/mainWindowIcon.png"));
+    mainIW->setWindowFlags(Qt::Window);
+    mainIW->setFixedSize(700,400);
+    mainIW->show();
 }
 
 // Exit toolbar action

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "infowindow.h"
+#include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +36,8 @@ private slots:
     void on_actionExit_triggered();
 
     void on_actionInfo_triggered();
+
+    void on_tracklistWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
