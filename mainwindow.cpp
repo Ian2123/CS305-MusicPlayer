@@ -76,12 +76,6 @@ void MainWindow::on_tracklistWidget_itemDoubleClicked(QListWidgetItem *item)
         on_playButton_clicked();
 }
 
-// Shuffle Button Function
-void MainWindow::on_shuffleButton_clicked()
-{
-
-}
-
 // Add Track toolbar action
 void MainWindow::on_actionAdd_triggered()
 {
@@ -92,7 +86,7 @@ void MainWindow::on_actionAdd_triggered()
         songDir.mkpath(SONGS_PATH);
 
     //Retrieve files, copy to songs dir, add to list.
-    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.wav *.mp3 *.m4a)"));
+    QStringList inFilenames = QFileDialog::getOpenFileNames(this, tr("Import Tracks"), "", tr("Track (*.wav *.mp3 *.m4a);;All (*)"));
     if(inFilenames.size() == 0) return; //If no files selected
     for(int i = 0; i < inFilenames.size(); i++){
         QFile inFile(inFilenames.at(i));
@@ -114,7 +108,7 @@ void MainWindow::on_actionRemove_triggered()
     }
 
     //Retrieve files and remove
-    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.wav *.mp3 *.m4a)"));
+    QStringList outFilenames = QFileDialog::getOpenFileNames(this, tr("Remove Tracks"), SONGS_PATH, tr("Track (*.wav *.mp3 *.m4a);;All (*)"));
     if(outFilenames.size() == 0) return; //if no files selected
     for(int i = 0; i < outFilenames.size(); i++){
         QFile outFile(outFilenames.at(i));
@@ -153,6 +147,12 @@ void MainWindow::on_actionExit_triggered()
 {
     if(IS_PLAYING) CURRENT_SONG.pause();
     QApplication::quit();
+}
+
+// Update Track list toolbar action
+void MainWindow::on_actionUpdate_Track_List_triggered()
+{
+    updateListWidget(false);
 }
 
 // Used to update track list widget to show tracks currently in Songs folder

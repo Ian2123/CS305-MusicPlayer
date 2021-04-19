@@ -23,8 +23,6 @@ private slots:
 
     void on_pauseButton_clicked();
 
-    void on_shuffleButton_clicked();
-
     void updateListWidget(bool);
 
     void on_actionAdd_triggered();
@@ -38,6 +36,8 @@ private slots:
     void on_actionInfo_triggered();
 
     void on_tracklistWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_actionUpdate_Track_List_triggered();
 
 private:
     Ui::MainWindow *ui;
