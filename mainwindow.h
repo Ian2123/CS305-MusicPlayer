@@ -39,6 +39,8 @@ private slots:
 
     void on_actionUpdate_Track_List_triggered();
 
+    void on_horizontalSlider_sliderMoved(int position);
+
 private:
     Ui::MainWindow *ui;
     InfoWindow *mainIW; //allows access to the main info window (mainIW) on heap, independent of main window.

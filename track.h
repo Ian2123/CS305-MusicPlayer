@@ -8,14 +8,13 @@ using namespace std;
 class Track
 {
 private:
-    QString tArtist, tAlbum, tTitle;
     QMediaPlayer * song = new QMediaPlayer;
 public:
     QString fName;
 
     Track();
-    void editTrack(); //edits track information: Title, Artist, Album
-    void play(); //plays song
+    void play(int); //plays song
+    void setVolume(int);
     void pause();
     QString getSongName();
     void setSong(QString); //gets song from user input path -> or from file selection if we can figure that out

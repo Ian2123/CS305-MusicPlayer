@@ -14,9 +14,9 @@
 //Global Variables
 QString SONGS_PATH = QString(QStandardPaths::writableLocation(QStandardPaths::MusicLocation)) + "/Songs";
 Track CURRENT_SONG;
-Playlist MAIN_PLAYLIST;
 QListWidgetItem * CURRENT_ITEM = nullptr;
 bool IS_PLAYING = false;
+int VOLUME = 0;
 
 //Set up main window ui and fill list widget with songs currently in Songs folder
 MainWindow::MainWindow(QWidget *parent)
@@ -47,12 +47,12 @@ void MainWindow::on_playButton_clicked()
     if(songName.compare(CURRENT_SONG.getSongName()) != 0){
         CURRENT_SONG.setSong(songName);
         newItem->setBackground(QBrush(Qt::green, Qt::SolidPattern));
-        CURRENT_SONG.play();
+        CURRENT_SONG.play(VOLUME);
     }
     else{
         //Resume currently playing song
         newItem->setBackground(QBrush(Qt::green, Qt::SolidPattern));
-        CURRENT_SONG.play();
+        CURRENT_SONG.play(VOLUME);
     }
     CURRENT_ITEM = newItem;
     IS_PLAYING = true;
@@ -173,4 +173,11 @@ void MainWindow::updateListWidget(bool startup){
         else
             CURRENT_ITEM->setBackground(QBrush(Qt::yellow, Qt::SolidPattern));
     }
+}
+
+void MainWindow::on_horizontalSlider_sliderMoved(int position)
+{
+    VOLUME = position;
+    if(CURRENT_ITEM == nullptr || CURRENT_SONG.getSongName() == "") return;
+    CURRENT_SONG.setVolume(VOLUME);
 }
