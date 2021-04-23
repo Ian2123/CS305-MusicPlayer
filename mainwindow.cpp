@@ -70,7 +70,7 @@ void MainWindow::on_pauseButton_clicked()
 //Double click play/pause functionality
 void MainWindow::on_tracklistWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    if(item == CURRENT_ITEM)
+    if(item == CURRENT_ITEM && IS_PLAYING)
         on_pauseButton_clicked();
     else
         on_playButton_clicked();
